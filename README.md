@@ -1,6 +1,6 @@
 # _In vivo_ electrophysiology data analysis
 
-It was firstly written in Matlab and later in Python. GUIs are provided for both version.  
+It was firstly written in *Matlab* and later in *Python*. GUIs are provided for both version.  
 
 ## Data Format
 
