@@ -33,3 +33,5 @@ This interface provides read experiment recording notes, such as `Date`, `Stimul
 Click `Preview Data` Button, we will get `Preview Data` GUI.
 ## Data Preview interface
 ![Image](images/data_preview_gui.png "data_preview_gui")
+## Timestamp Analysis (After Spike Sorting)
+
