@@ -30,6 +30,6 @@ start with `data_process.m` (with GUI)\
 ![Image](images/data_process_gui.png "data_process_gui")
 
 This interface provides read experiment recording notes, such as `Date`, `Stimulus`, `Trials`, `Parameters`, etc.
-Click `Preview Data` Button, we will get `Preview Data` GUI.\
+Click `Preview Data` Button, we will get `Preview Data` GUI.
 ## Data Preview interface
 ![Image](images/data_preview_gui.png "data_preview_gui")
