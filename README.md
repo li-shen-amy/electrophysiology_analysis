@@ -28,6 +28,7 @@ Sample data is provided. Please see Folder `Sample data`.
 For _m files_:\
 start with `data_process.m` (with GUI)\
 ![Image](images/data_process_gui.png "data_process_gui")
+
 This interface provides read experiment recording notes, such as `Date`, `Stimulus`, `Trials`, `Parameters`, etc.
 Click `Preview Data` Button, we will get `Preview Data` GUI.\
 ## Data Preview interface
