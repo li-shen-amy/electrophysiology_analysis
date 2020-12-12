@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://li-shen-amy.github.io/profile/images/projects/ephys_ana.jpg" />
+</p>
+
 # _In vivo_ electrophysiology data analysis [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 It was firstly written in *Matlab* and later in *Python*. GUIs are provided for both version.
 ## Data Format
