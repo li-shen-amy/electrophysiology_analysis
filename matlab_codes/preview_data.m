@@ -409,11 +409,11 @@ handles.global=get(handles.global_rbt,'Value');
 if  handles.swp_no>0 && handles.swp_no<=handles.trial_num ...
         &&   handles.ch_no>0 && handles.ch_no<=handles.ch_num
     data_disp=handles.data(:,(handles.swp_no-1)*handles.ch_num+handles.ch_no);
-   if get(handles.sep_display,'Value')==0
-       axes(handles.sig_axes);
-   else
-       figure;
-   end
+    if get(handles.sep_display,'Value')==0
+        axes(handles.sig_axes);
+    else
+        figure;
+    end
     plot(1/handles.Fs:1/handles.Fs:handles.trace_length,data_disp,'k');
     xlabel('T');
     axis auto;
@@ -466,9 +466,9 @@ if  handles.swp_no>0 && handles.swp_no<=handles.trial_num ...
         data_disp=handles.data1d;
     elseif     get(handles.ch_spk,'Value')
         data_disp=[];
-       for swp_no=1:handles.trial_num
-    data_disp=[data_disp;handles.data(:,(swp_no-1)*handles.ch_num+handles.ch_no)];
-       end
+        for swp_no=1:handles.trial_num
+            data_disp=[data_disp;handles.data(:,(swp_no-1)*handles.ch_num+handles.ch_no)];
+        end
     end
     out_idx=find(data_disp<handles.thre);
     diff_idx=out_idx(2:end)-out_idx(1:end-1);
@@ -479,12 +479,12 @@ if  handles.swp_no>0 && handles.swp_no<=handles.trial_num ...
     wf_before=15;
     wf_after=30;
     wf_raw=[];
-   if get(handles.sep_display,'Value')==0
-    axes(handles.spk_axes);
-    cla;
-   else
-       figure
-   end
+    if get(handles.sep_display,'Value')==0
+        axes(handles.spk_axes);
+        cla;
+    else
+        figure
+    end
     hold on
     count=0;
     invalid_iwf=[];
@@ -497,7 +497,7 @@ if  handles.swp_no>0 && handles.swp_no<=handles.trial_num ...
         else
             invalid_iwf=[invalid_iwf,iwf];
         end
-    end 
+    end
     
     out_idx=setdiff(out_idx,out_idx(invalid_iwf));
     plot([-wf_before/handles.Fs*1000,wf_after/handles.Fs*1000],[0,0],'k');

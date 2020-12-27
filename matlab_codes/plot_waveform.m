@@ -1,6 +1,13 @@
 function plot_waveform(mean_waveform,std_waveform,ch)
-%% plot waveform given mean and std (for all channel, output of pipeline processing), channel number
-% by Li Shen, shen938@usc.edu
+%% plot spike waveform given mean and std (for all channel, output of pipeline processing), channel number
+%
+% input: - mean_waveform: matrix with size [total_channel, nsample_waveform],
+%                         e.g. for 16 channel, 30kHz sample rate, 1ms waveform length, size = [16, 30]
+%        - std_waveform: single-side significance intervale for all
+%                        waveform samples
+%        - ch: selected channel (out of total_channel)
+%
+%%% by Li Shen, shen938@usc.edu
 %%
 figure,
 len=size(mean_waveform,2);

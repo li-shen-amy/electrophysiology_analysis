@@ -55,11 +55,11 @@ function data_process_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for data_process
 handles.output = hObject;
 if strcmp(computer,'MACI64')
-    set(handles.prepath_edit,'String','/Users/Emily/Google Drive/data/');
-    set(handles.parafile_edit,'String','/Users/Emily/Google Drive/data/pcg_exp_record_ana.xlsx');
+    set(handles.prepath_edit,'String','data/');
+    set(handles.parafile_edit,'String','data/pcg_exp_record_ana.xlsx');
 elseif  strcmp(computer,'PCWIN64')
-    set(handles.prepath_edit,'String','F:\data\');
-    set(handles.parafile_edit,'String','F:\data\pcg_exp_record_ana.xlsx');
+    set(handles.prepath_edit,'String','data\');
+    set(handles.parafile_edit,'String','data\pcg_exp_record_ana.xlsx');
     %      set(handles.prepath_edit,'String','H:\');
     %     set(handles.parafile_edit,'String','H:\pcg_exp_record_ana.xlsx');
     %      set(handles.prepath_edit,'String','H:\TH-cre LC recording\');
@@ -252,7 +252,7 @@ if ~exist(handles.binfolder,'dir')
     mkdir(handles.binfolder);
 end
 if get(handles.ele_10mm,'Value')
-    chmap=[13,14,15,16,11,12,9,10,7,8,5,6,3,4,1,2];
+    chmap=[13,14,15,16,11,12,9,10,7,8,5,6,3,4,1,2];% for 10 mm electrode map
 else
     chmap=1:handles.ch_num;
 end
@@ -318,7 +318,7 @@ if get(handles.comsite_sel,'Value')
             %         end
             %         data_kwik=data_kwik_sm;
             if get(handles.if_rem_com_sig,'value')
-            data_kwik=data_kwik-median(data_kwik,1); % common median reference
+                data_kwik=data_kwik-median(data_kwik,1); % common median reference
             end
             data1d=reshape(data_kwik,1,size(data_kwik,1)*size(data_kwik,2));
             maxdata=max(abs(data1d))
@@ -336,13 +336,13 @@ if get(handles.comsite_sel,'Value')
             data1=int16(data_kwik*factor); % 16 bit
             ntrial=size(data1,2);
             % fid=fopen(strrep(fn,'.lvb','.dat'),'w','b');
-             if get(handles.if_rem_com_sig,'value')
-            fid=fopen(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_com_demean.bin']),'w');
-            disp(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_com_demean.bin']))
-             else
-                    fid=fopen(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_com.bin']),'w');
-            disp(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_com.bin']))
-             end
+            if get(handles.if_rem_com_sig,'value')
+                fid=fopen(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_com_demean.bin']),'w');
+                disp(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_com_demean.bin']))
+            else
+                fid=fopen(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_com.bin']),'w');
+                disp(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_com.bin']))
+            end
             fwrite(fid,data1,'int16');
             fclose(fid);
         else
@@ -389,9 +389,9 @@ if get(handles.comsite_sel,'Value')
                 %           [data_kwik_sm(ch,:),~] = eegfilt(data_kwik(ch,:),30000,300,10000);
                 %         end
                 %         data_kwik=data_kwik_sm;
-                  if get(handles.if_rem_com_sig,'value')
-            data_kwik=data_kwik-mean(data_kwik);
-            end
+                if get(handles.if_rem_com_sig,'value')
+                    data_kwik=data_kwik-mean(data_kwik);
+                end
                 data1d=reshape(data_kwik,1,size(data_kwik,1)*size(data_kwik,2));
                 maxdata=max(abs(data1d))
                 stddata=std(data1d);
@@ -408,14 +408,14 @@ if get(handles.comsite_sel,'Value')
                 data1=int16(data_kwik*factor); % 16 bit
                 ntrial=size(data1,2);
                 % fid=fopen(strrep(fn,'.lvb','.dat'),'w','b');
-                 if get(handles.if_rem_com_sig,'value')
-            fid=fopen(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_t',num2str(itet),'_com_demean.bin']),'w');
-                disp(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_t',num2str(itet),'_com_demean.bin']))
-             else
-                fid=fopen(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_t',num2str(itet),'_com.bin']),'w');
-                disp(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_t',num2str(itet),'_com.bin']))
-                 end
-                 fwrite(fid,data1,'int16');
+                if get(handles.if_rem_com_sig,'value')
+                    fid=fopen(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_t',num2str(itet),'_com_demean.bin']),'w');
+                    disp(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_t',num2str(itet),'_com_demean.bin']))
+                else
+                    fid=fopen(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_t',num2str(itet),'_com.bin']),'w');
+                    disp(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_t',num2str(itet),'_com.bin']))
+                end
+                fwrite(fid,data1,'int16');
                 fclose(fid);
             end
         end
@@ -466,9 +466,9 @@ else
                     for trial=1:trial_num
                         data_kwik=[data_kwik,data(:,(trial-1)*handles.ch_num+chmap)'];
                     end
-                      if get(handles.if_rem_com_sig,'value')
-            data_kwik=data_kwik-mean(data_kwik);
-            end
+                    if get(handles.if_rem_com_sig,'value')
+                        data_kwik=data_kwik-mean(data_kwik);
+                    end
                     data1d=reshape(data_kwik,1,size(data_kwik,1)*size(data_kwik,2));
                     maxdata=max(abs(data1d));
                     stddata=std(data1d);
@@ -483,13 +483,13 @@ else
                     factor=32767/maxdata;
                     data1=int16(data_kwik*factor); % 16 bit
                     ntrial=size(data1,2);
-                       if get(handles.if_rem_com_sig,'value')
-                      disp(fullfile(handles.binfolder,strrep(xfn,'.lvb','_demean.bin')));
-                    fid=fopen(fullfile(handles.binfolder,strrep(xfn,'.lvb','_demean.bin')),'w');
-                       else
-                    disp(fullfile(handles.binfolder,strrep(xfn,'.lvb','.bin')));
-                    fid=fopen(fullfile(handles.binfolder,strrep(xfn,'.lvb','.bin')),'w');
-                       end
+                    if get(handles.if_rem_com_sig,'value')
+                        disp(fullfile(handles.binfolder,strrep(xfn,'.lvb','_demean.bin')));
+                        fid=fopen(fullfile(handles.binfolder,strrep(xfn,'.lvb','_demean.bin')),'w');
+                    else
+                        disp(fullfile(handles.binfolder,strrep(xfn,'.lvb','.bin')));
+                        fid=fopen(fullfile(handles.binfolder,strrep(xfn,'.lvb','.bin')),'w');
+                    end
                     fwrite(fid,data1,'int16');
                     fclose(fid);
                 else
@@ -530,9 +530,9 @@ else
                 for trial=1:trial_num
                     data_kwik=[data_kwik,data(:,(trial-1)*handles.ch_num+chmap)'];
                 end
-                   if get(handles.if_rem_com_sig,'value')
-            data_kwik=data_kwik-mean(data_kwik);
-            end
+                if get(handles.if_rem_com_sig,'value')
+                    data_kwik=data_kwik-mean(data_kwik);
+                end
                 data1d=reshape(data_kwik,1,size(data_kwik,1)*size(data_kwik,2));
                 maxdata=max(abs(data1d));
                 stddata=std(data1d);
@@ -547,14 +547,14 @@ else
                 factor=32767/maxdata;
                 data1=int16(data_kwik*factor); % 16 bit
                 ntrial=size(data1,2);
-                  if get(handles.if_rem_com_sig,'value')
-                       disp(fullfile(handles.binfolder,strrep(xfn,'.lvb','_demean.bin')));
-                fid=fopen(fullfile(handles.binfolder,strrep(xfn,'.lvb','_demean.bin')),'w');
-                  else
-                disp(fullfile(handles.binfolder,strrep(xfn,'.lvb','.bin')));
-                fid=fopen(fullfile(handles.binfolder,strrep(xfn,'.lvb','.bin')),'w');
-                  end
-                  fwrite(fid,data1,'int16');
+                if get(handles.if_rem_com_sig,'value')
+                    disp(fullfile(handles.binfolder,strrep(xfn,'.lvb','_demean.bin')));
+                    fid=fopen(fullfile(handles.binfolder,strrep(xfn,'.lvb','_demean.bin')),'w');
+                else
+                    disp(fullfile(handles.binfolder,strrep(xfn,'.lvb','.bin')));
+                    fid=fopen(fullfile(handles.binfolder,strrep(xfn,'.lvb','.bin')),'w');
+                end
+                fwrite(fid,data1,'int16');
                 fclose(fid);
             else
                 disp(['Non-exist:',fn]);
@@ -937,9 +937,9 @@ if get(handles.comsite_sel,'Value')
         %
         %         factor=127/maxdata;
         %         data1=data_kwik*factor; % 16 bit
-             if get(handles.if_rem_com_sig,'value')
+        if get(handles.if_rem_com_sig,'value')
             data_kwik=data_kwik-mean(data_kwik);
-            end
+        end
         save(fullfile(handles.binfolder,[handles.date,'_',num2str(rec_site),'_com.mat']),'data_kwik','-v7.3');
         
         %         ntrial=size(data1,2);
@@ -995,9 +995,9 @@ else
                 for trial=1:trial_num
                     data_kwik=[data_kwik,data(:,(trial-1)*handles.ch_num+chmap)'];
                 end
-                   if get(handles.if_rem_com_sig,'value')
-            data_kwik=data_kwik-mean(data_kwik);
-            end
+                if get(handles.if_rem_com_sig,'value')
+                    data_kwik=data_kwik-mean(data_kwik);
+                end
                 data_kwik=data_kwik*1000;
                 disp(fullfile(handles.binfolder,strrep(xfn,'.lvb','.mat')));
                 save(fullfile(handles.binfolder,strrep(xfn,'.lvb','.mat')),'data_kwik','-v7.3');

@@ -1,6 +1,13 @@
 function [line_handle,shase_handle]=plot_shadow(x,mean_y,sd_y,color,alpha)
 %% plot mean with sd/se shadow
+%
+% input - x: data for x-axis
+%       - mean_y: mean signal for y-axis (thick line in the middle)
+%       - sd_y: error signal for y-axis (single side significant interval, half thickness of the shadow)
+%       - color: string or RGB vector for line/shadow color
+%       - alpha: transparency of shadow
 % example: plot_shadow([0:10],[0:10],0.1*ones(1,10),'k',0.5);
+%
 %%% by Li Shen shen938@usc.edu
 %% 
 x=reshape(x,1,length(x));
