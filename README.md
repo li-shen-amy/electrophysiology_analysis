@@ -36,6 +36,14 @@ start with `data_process.m` (with GUI)\
 This interface provides read experiment recording notes, such as `Date`, `Stimulus`, `Trials`, `Parameters`, etc.
 Click `Preview Data` Button, we will get `Preview Data` GUI.
 ## Data Preview interface
-![Image](images/data_preview_gui.png "data_preview_gui")
+![Image](images/data_preview_gui2.png "data_preview_gui2")
 ## Timestamp Analysis (After Spike Sorting)
-
+After sorting, spike timestamp data were processed to extract the key response properties and the results can be visualized as the exported figures. 
+Two examples of the visualization of a single unit responsed to two different stimuli: _90db Tone_ and _airpuff_:
+![Image](sample_data/fig/site1rec8_ch1_n5.jpg "jpg_export_example1")
+![Image](sample_data/fig/site1rec9_ch1_n5.jpg "jpg_export_example2")
+## Further analysis: Summarize the results for each unit and each recording sessions for one experiments
+Here are some examples of summarized units' response to sounds with different intensity (dB SPL):
+![Image](sample_data/Results/procesed_1_9_2018_site1.jpg "summary_export_example1")
+![Image](sample_data/Results/procesed_1_9_2018_site2.jpg "summary_export_example2")
+![Image](sample_data/Results/procesed_1_23_2018_site2.jpg "summary_export_example3")
